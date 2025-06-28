@@ -14,12 +14,11 @@ const { generatePWAManifest } = require('./scripts/pwa-manifest-generator')
 // Track open connections
 const connections = new Set();
 
-const CERT_DIR = path.join(__dirname, '..', '');
+const CERT_DIR = path.join(__dirname); // __dirname is DumbDrop root here
 const sslOptions = {
-  key: fs.readFileSync(path.join(CERT_DIR, 'server.key')),
-  cert: fs.readFileSync(path.join(CERT_DIR, 'server.crt')),
+  key: fs.readFileSync(path.join(CERT_DIR, 'key.pem')),
+  cert: fs.readFileSync(path.join(CERT_DIR, 'cert.pem')),
 };
-
 /**
  * Start the server and initialize the application
  * @returns {Promise<http.Server>} The HTTP server instance
