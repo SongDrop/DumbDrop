@@ -7,6 +7,7 @@
 const { app, initialize, config } = require('./app');
 const logger = require('./utils/logger');
 const fs = require('fs');
+const path = require('path');
 const https = require('https');
 const { executeCleanup } = require('./utils/cleanup');
 const { generatePWAManifest } = require('./scripts/pwa-manifest-generator')
