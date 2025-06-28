@@ -11,7 +11,7 @@ const cookieParser = require('cookie-parser');
 const path = require('path');
 const fs = require('fs');
 const fsPromises = require('fs').promises;
-const https = requir('https');
+const https = require('https');
 
 const { config, validateConfig } = require('./config');
 const logger = require('./utils/logger');
