@@ -7,11 +7,18 @@
 const { app, initialize, config } = require('./app');
 const logger = require('./utils/logger');
 const fs = require('fs');
+const https = require('https');
 const { executeCleanup } = require('./utils/cleanup');
 const { generatePWAManifest } = require('./scripts/pwa-manifest-generator')
 
 // Track open connections
 const connections = new Set();
+
+const CERT_DIR = path.join(__dirname, '..', '');
+const sslOptions = {
+  key: fs.readFileSync(path.join(CERT_DIR, 'server.key')),
+  cert: fs.readFileSync(path.join(CERT_DIR, 'server.crt')),
+};
 
 /**
  * Start the server and initialize the application
@@ -21,9 +28,10 @@ async function startServer() {
   try {
     // Initialize the application
     await initialize();
-    
+
+     // HTTPS server instead of app.listen()
     // Start the server - bind to 0.0.0.0 for Docker compatibility
-    const server = app.listen(config.port, '0.0.0.0', () => {
+    const server = https.createServer(sslOptions, app).listen(config.port, '0.0.0.0', () => {
       logger.info(`Server running at ${config.baseUrl}`);
       logger.info(`Server listening on 0.0.0.0:${config.port}`);
       logger.info(`Upload directory: ${config.uploadDir}`);
