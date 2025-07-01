@@ -14,6 +14,16 @@
 <body>
     <div class="container">
         <div class="title-container">
+             <button class="qr-toggle" onclick="toggleQrCode()" aria-label="Toggle QR code">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="theme-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+            </button>
+            
+            <h1>{{SITE_TITLE}}</h1>
             <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
                 <svg xmlns="http://www.w3.org/2000/svg" class="theme-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <!-- Moon icon (shown in light mode) -->
@@ -28,15 +38,6 @@
                     <line class="sun" x1="21" y1="12" x2="23" y2="12" style="display:none"/>
                     <line class="sun" x1="4.22" y1="19.78" x2="5.64" y2="18.36" style="display:none"/>
                     <line class="sun" x1="18.36" y1="5.64" x2="19.78" y2="4.22" style="display:none"/>
-                </svg>
-            </button>
-            <h1>{{SITE_TITLE}}</h1>
-            <button class="qr-toggle" onclick="toggleQrCode()" aria-label="Toggle QR code">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="theme-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="3" width="7" height="7"></rect>
-                    <rect x="14" y="3" width="7" height="7"></rect>
-                    <rect x="14" y="14" width="7" height="7"></rect>
-                    <rect x="3" y="14" width="7" height="7"></rect>
                 </svg>
             </button>
         </div>
