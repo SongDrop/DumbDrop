@@ -68,6 +68,8 @@ body {
 
 .title-container h1 {
     order: 2;
+    margin: 0 auto; /* Center the title */
+    padding: 0 60px; /* Make space for buttons */
 }
 
 .theme-toggle {
@@ -103,17 +105,33 @@ h1 {
 }
 
 .qr-toggle {
+    position: absolute;
+    top: 20px;
+    left: 20px;
     background: none;
     border: none;
     cursor: pointer;
-    padding: 5px;
-    margin-left: 10px;
-    vertical-align: middle;
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    transition: background-color 0.3s ease;
+}
+
+.qr-toggle:hover {
+    background-color: rgba(128, 128, 128, 0.2);
 }
 
 .qr-toggle svg {
     width: 24px;
     height: 24px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
 .qr-code-container {
