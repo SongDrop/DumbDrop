@@ -9,6 +9,7 @@
     <script src="toastify/toastify.js"></script>
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/svg+xml" href="assets/icon.svg">
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -29,6 +30,18 @@
             </svg>
         </button>
         <h1>{{SITE_TITLE}}</h1>
+        <button class="qr-toggle" onclick="toggleQrCode()" aria-label="Toggle QR code">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+        </button>
+        <div id="qrCodeContainer" class="qr-code-container" style="display: none;">
+            <div id="qrCode"></div>
+            <p>Scan to access this page</p>
+        </div>
         <div class="upload-container" id="dropZone">
             <div class="upload-content">
                 <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -871,6 +884,30 @@
             uploadButton.style.display = (!AUTO_UPLOAD && files.length > 0) ? 'block' : 'none';
         }
 
+        // QR Code functionality
+        function toggleQrCode() {
+            const qrContainer = document.getElementById('qrCodeContainer');
+            if (qrContainer.style.display === 'none') {
+                generateQrCode();
+                qrContainer.style.display = 'block';
+            } else {
+                qrContainer.style.display = 'none';
+            }
+        }
+        
+        function generateQrCode() {
+            const qrElement = document.getElementById('qrCode');
+            qrElement.innerHTML = ''; // Clear previous QR code
+            QRCode.toCanvas(window.location.href, { width: 200 }, (error, canvas) => {
+                if (error) {
+                    console.error('QR code generation failed:', error);
+                    qrElement.textContent = 'QR Code Error';
+                } else {
+                    qrElement.appendChild(canvas);
+                }
+            });
+        }
+        
         // Add this CSS to the existing styles
         const style = document.createElement('style');
         style.textContent = `
@@ -896,6 +933,39 @@
             0% { opacity: 0.6; }
             50% { opacity: 1; }
             100% { opacity: 0.6; }
+        }
+        .qr-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+        
+        .qr-toggle svg {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .qr-code-container {
+            text-align: center;
+            margin: 20px auto;
+            padding: 15px;
+            background: var(--container-bg);
+            border-radius: 8px;
+            max-width: 250px;
+        }
+        
+        .qr-code-container p {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: var(--text-color);
+        }
+        
+        #qrCode {
+            display: flex;
+            justify-content: center;
         }
         `;
         document.head.appendChild(style);
