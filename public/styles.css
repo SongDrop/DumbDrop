@@ -70,6 +70,10 @@ body {
     order: 2;
     margin: 0 auto; /* Center the title */
     padding: 0 60px; /* Make space for buttons */
+    color: var(--text-color);
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    font-weight: 700;
 }
 
 .theme-toggle {
@@ -95,13 +99,6 @@ body {
 .theme-toggle svg {
     width: 24px;
     height: 24px;
-}
-
-h1 {
-    color: var(--text-color);
-    margin-bottom: 30px;
-    font-size: 2.5rem;
-    font-weight: 700;
 }
 
 .qr-toggle {
