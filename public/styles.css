@@ -51,6 +51,25 @@ body {
     position: relative;
 }
 
+ .title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.qr-toggle {
+    order: 1;
+}
+
+.theme-toggle {
+    order: 3;
+}
+
+.title-container h1 {
+    order: 2;
+}
+
 .theme-toggle {
     position: absolute;
     top: 20px;
