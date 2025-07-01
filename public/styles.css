@@ -51,7 +51,7 @@ body {
     position: relative;
 }
 
- .title-container {
+.title-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -100,6 +100,40 @@ h1 {
     margin-bottom: 30px;
     font-size: 2.5rem;
     font-weight: 700;
+}
+
+.qr-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.qr-toggle svg {
+    width: 24px;
+    height: 24px;
+}
+
+.qr-code-container {
+    text-align: center;
+    margin: 20px auto;
+    padding: 15px;
+    background: var(--container-bg);
+    border-radius: 8px;
+    max-width: 250px;
+}
+
+.qr-code-container p {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: var(--text-color);
+}
+
+#qrCode {
+    display: flex;
+    justify-content: center;
 }
 
 .upload-container {
